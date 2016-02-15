@@ -1,6 +1,6 @@
 var jssor_1_slider;
 jQuery(document).ready(function ($) {
-    
+
     var jssor_1_SlideshowTransitions = [
       {$Duration:1200,x:0.3,$During:{$Left:[0.3,0.7]},$Easing:{$Left:$Jease$.$InCubic,$Opacity:$Jease$.$Linear},$Opacity:2},
       {$Duration:1200,x:-0.3,$SlideOut:true,$Easing:{$Left:$Jease$.$InCubic,$Opacity:$Jease$.$Linear},$Opacity:2},
@@ -25,7 +25,7 @@ jQuery(document).ready(function ($) {
       {$Duration:1200,$Delay:20,$Clip:12,$Assembly:260,$Easing:{$Clip:$Jease$.$InCubic,$Opacity:$Jease$.$Linear},$Opacity:2},
       {$Duration:1200,$Delay:20,$Clip:12,$SlideOut:true,$Assembly:260,$Easing:{$Clip:$Jease$.$OutCubic,$Opacity:$Jease$.$Linear},$Opacity:2}
     ];
-    
+
     var jssor_1_options = {
       $AutoPlay: false,
       $SlideshowOptions: {
@@ -44,11 +44,11 @@ jQuery(document).ready(function ($) {
         $Align: 360
       }
     };
-    
+
     jssor_1_slider = new $JssorSlider$("jssor_1", jssor_1_options);
 
-    
-    
+
+
     //responsive code begin
     //you can remove responsive code if you don't want the slider scales while window resizing
     function ScaleSlider() {
@@ -67,7 +67,7 @@ jQuery(document).ready(function ($) {
     $(window).bind("orientationchange", ScaleSlider);
     //responsive code end
 });
-function play() { 
+function play() {
     console.log("play clicked");
     jssor_1_slider.$Play();
 }
@@ -96,19 +96,30 @@ $(document).ready(function() {
 function initializePage() {
   $('#commentSection').hide();
   $('#description').hide();
-  $('#one').click(showDescription);
+  $('a.details').click(showDescription);
   $('#commentSubmit').click(submit);
 }
 
 // popup description
-function showDescription() {
+function showDescription(e) {
+  e.preventDefault();
   $('#description').toggle();
+  var containingProject = $(this).closest(".details");
+  var description = $(containingProject).find("#description");
+  $.getJSON("images.json", function(data) {
+    $("#description").html(data.images[0].description);
+    // data is a JavaScript object now. Handle it as such
+});
+
+    /*if (description.length == 0) {
+       $(containingProject).append("<div class='project-description'><p></p></div>");
+    }*/
 }
 
 //submit edits
 function submit(e) {
 e.preventDefault();
-  console.log("clicked submit"); 
+  console.log("clicked submit");
 
   var newTitle = $('#editTitle').val();
   $('#title').text(newTitle);
@@ -122,10 +133,3 @@ $('#commentSection').hide();
 $('#description').show();
 
 }
-
-
-
-
-
-
-
