@@ -116,7 +116,7 @@ function capture(video, canvas, image, captureButton, stopButton, snapshotButton
 	};
 
 	var takePhoto = function () {
-		ctx.drawImage(video, 0, 0, 800, 356);
+		ctx.drawImage(video, 0, 0, 320, 240);
 		canvas.style.display = "block";
 		showImage();
 	};
