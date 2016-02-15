@@ -1,6 +1,6 @@
 var data = require('../images.json');
-var LocalStorage = require('node-localstorage').LocalStorage,
-localStorage = new LocalStorage('./scratch');
+//var LocalStorage = require('node-localstorage').LocalStorage,
+//localStorage = new LocalStorage('./scratch');
 exports.renderSlideshow = function(req, res) {
 	console.log(data);
 
