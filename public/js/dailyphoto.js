@@ -47,19 +47,20 @@ function capture(video, canvas, image, captureButton, stopButton, snapshotButton
 					if( localStorage.getItem('images')===null)
 					{
 						var images = [];
-						var newImage = new Image(); 
-						newImage.src = dataURL;
+						//var newImage = new Image(); 
+						//newImage.src = dataURL;
 						images.push(dataURL); 
 						console.log(JSON.stringify(images));
-						localStorage.setItem('images', images); 
+						localStorage.setItem('images', JSON.stringify(images)); 
 					}
 					else
 					{
-						var images = [localStorage.getItem('images')]; 
+						var images = JSON.parse(localStorage.getItem('images')); 
 						//console.log(images.src); 
-						var newImage = new Image(); 
-						newImage.src = dataURL; 
+						//var newImage = new Image(); 
+						//newImage.src = dataURL; 
 						images.push(dataURL); 
+						localStorage.setItem('images', JSON.stringify(images));
 					}
 					/*var data1; 
 			      	$.getJSON("images.json", function(data) 

@@ -1,6 +1,7 @@
 var jssor_1_slider;
 jQuery(document).ready(function ($) {
-
+    
+    generateSlides(); 
     var jssor_1_SlideshowTransitions = [
       {$Duration:1200,x:0.3,$During:{$Left:[0.3,0.7]},$Easing:{$Left:$Jease$.$InCubic,$Opacity:$Jease$.$Linear},$Opacity:2},
       {$Duration:1200,x:-0.3,$SlideOut:true,$Easing:{$Left:$Jease$.$InCubic,$Opacity:$Jease$.$Linear},$Opacity:2},
@@ -133,3 +134,36 @@ $('#commentSection').hide();
 $('#description').show();
 
 }
+
+function generateSlides()
+{
+    var imageArray = JSON.parse(localStorage.getItem('images')); 
+    console.log(imageArray.length); 
+    console.log(imageArray[0]);
+    for( var i = 0; i < imageArray.length; i++ )
+    {
+        var new_div = document.createElement('div');
+        new_div.setAttribute('data-p',144.50);
+        new_div.style='display: none;';
+        document.getElementById("slides").appendChild(new_div); 
+
+        var image = document.createElement('img'); 
+        image.id = 'image' + i+1; 
+        image.setAttribute('data-u',"image");
+        image.src = imageArray[i]; 
+        new_div.appendChild(image); 
+
+        var thumb = document.createElement('img'); 
+        thumb.id = 'thumb' + i; 
+        thumb.setAttribute('data-u',"thumb");
+        thumb.src = 'img/slideshow_img/thumb-01.jpg'; 
+        new_div.appendChild(thumb); 
+    }
+}
+
+
+
+
+
+
+
