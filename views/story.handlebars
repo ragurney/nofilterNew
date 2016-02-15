@@ -313,7 +313,7 @@
 <script type="text/javascript">
 //ADDED
 window.onload = function() {
-    generateSlides(); 
+   // generateSlides(); 
     /*var picture = localStorage.getItem('image');
     //console.log(picture);
     var image = document.createElement('img');
@@ -325,32 +325,6 @@ window.onload = function() {
     var image = document.createElement('img');
     image.src = picture;
     document.body.appendChild(image);*/
-}
-
-function generateSlides()
-{
-    var imageArray = JSON.parse(localStorage.getItem('images')); 
-    console.log(imageArray.length); 
-    console.log(imageArray[0]);
-    for( var i = 0; i < imageArray.length; i++ )
-    {
-        var new_div = document.createElement('div');
-        new_div.setAttribute('data-p',144.50);
-        new_div.style='display: none;';
-        document.getElementById("slides").appendChild(new_div); 
-
-        var image = document.createElement('img'); 
-        image.id = 'image' + i+1; 
-        image.setAttribute('data-u',"image");
-        image.src = imageArray[i]; 
-        new_div.appendChild(image); 
-
-        var thumb = document.createElement('img'); 
-        thumb.id = 'thumb' + i; 
-        thumb.setAttribute('data-u',"thumb");
-        thumb.src = 'img/slideshow_img/thumb-01.jpg'; 
-        new_div.appendChild(thumb); 
-    }
 }
 </script>
 
