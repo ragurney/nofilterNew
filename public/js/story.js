@@ -1,6 +1,10 @@
 var jssor_1_slider;
 jQuery(document).ready(function ($) {
 
+    $('#noDescription').hide();
+    $('#editButton').hide();
+    $('#commentSection').hide();
+
     generateSlides();
     var jssor_1_SlideshowTransitions = [
       {$Duration:1200,x:0.3,$During:{$Left:[0.3,0.7]},$Easing:{$Left:$Jease$.$InCubic,$Opacity:$Jease$.$Linear},$Opacity:2},
