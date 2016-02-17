@@ -31,7 +31,7 @@ function capture(video, canvas, image, captureButton, stopButton, snapshotButton
 				takePhoto();
 				//Added code for saving image
 				var dataURL = canvas.toDataURL("image/png");
-				console.log(dataURL);
+				//console.log(dataURL);
 				//window.open(dataURL, "toDataURL() image", "width=600, height=200");
 				//var ajax = new XMLHttpRequest();
 				//ajax.open("POST",'index.php',false);
@@ -42,39 +42,61 @@ function capture(video, canvas, image, captureButton, stopButton, snapshotButton
 				//Confirmation for photo 
 				notie.confirm('Do you want to use this as your Photo of the Day?', 'Yes', 'Cancel', function() 
                 {
+                	var currentDate = new Date();
+					var dd = currentDate.getDate();
+					var mm = currentDate.getMonth(); //January is 0!
+					var yyyy = currentDate.getFullYear();
+
+					var images;
+
+					if(localStorage.getItem('images')===null)
+					{
+						images = [];
+					}
+					else
+					{
+						images = JSON.parse(localStorage.getItem('images'));
+					}
+
                 	//dataURL.replace(/^data:image\/(png|jpg);base64,/,"");
 					//localStorage.setItem('image2', dataURL);
-					if( localStorage.getItem('images')===null)
+					if(localStorage.getItem('images')===null)
 					{
-						var images = [];
 						var newPhoto = new Object(); 
 						newPhoto["id"] = "image"+0;
 						newPhoto["image"] = dataURL;
 						newPhoto["thumb"] = "thumb-01.jpg";
-						newPhoto["date"] = Date();
+						newPhoto["day"] = dd;
+						newPhoto["month"] = mm;
+						newPhoto["year"] = yyyy;
 						newPhoto["description"] = ""; 
 						//var newImage = new Image(); 
 						//newImage.src = dataURL;
 						images.push(newPhoto); 
-						console.log(JSON.stringify(images));
+						//console.log(JSON.stringify(images));
 						localStorage.setItem('images', JSON.stringify(images)); 
 					}
-					else
+					else if((dd !== images[images.length-1]["day"]) && (mm !== images[images.length-1]["month"]) && (yyyy !== images[images.length-1]["year"]))
 					{
-						var images = JSON.parse(localStorage.getItem('images')); 
 						var newPhoto = new Object(); 
 						newPhoto["id"] = "image"+(images.length);
 						newPhoto["image"] = dataURL;
 						newPhoto["thumb"] = "thumb-01.jpg";
-						newPhoto["date"] = Date();
+						newPhoto["day"] = dd;
+						newPhoto["month"] = mm;
+						newPhoto["year"] = yyyy;
 						newPhoto["description"] = ""; 
 						//console.log(images.src); 
 						//var newImage = new Image(); 
 						//newImage.src = dataURL; 
 						images.push(newPhoto);
-						console.log(images); 
+						//console.log(images); 
 						//console.log(JSON.stringify(images)); 
 						localStorage.setItem('images', JSON.stringify(images));
+					}
+					else
+					{
+						console.log("DENIED");
 					}
 					var data1; 
 			      	/*$.getJSON("images.json", function(data) 
