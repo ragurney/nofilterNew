@@ -96,6 +96,7 @@ function capture(video, canvas, image, captureButton, stopButton, snapshotButton
 					}
 					else
 					{
+						notie.alert(3, "<b>Error!</b><br> You've already taken your daily photo for today!<br>Come back tomorrow!" , 3);
 						console.log("DENIED");
 					}
 					var data1; 
