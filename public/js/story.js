@@ -29,6 +29,7 @@ jQuery(document).ready(function ($) {
 
     var jssor_1_options = {
       $AutoPlay: false,
+      $SlideDuration: 600, 
       $SlideshowOptions: {
         $Class: $JssorSlideshowRunner$,
         $Transitions: jssor_1_SlideshowTransitions,
