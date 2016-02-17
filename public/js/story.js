@@ -82,6 +82,8 @@ function pause() {
 function edit() {
   $('#commentSection').show();
   $('#description').hide();
+  $('#noDescription').hide();
+  $('#editButton').hide();
 
 }
 
@@ -98,21 +100,38 @@ $(document).ready(function() {
 function initializePage() {
   $('#commentSection').hide();
   $('#description').hide();
+  $('#noDescription').hide();
+  $('#editButton').hide();
   $('a.details').click(showDescription);
   $('#commentSubmit').click(submit);
 }
 
 // popup description
 function showDescription(e) {
+  var imageArray = JSON.parse(localStorage.getItem('images'));
+
   e.preventDefault();
   $('#description').toggle();
+  $('#editButton').toggle();
+
   var containingProject = $(this).closest(".details");
   var description = $(containingProject).find("#description");
-  $.getJSON("images.json", function(data) {
+  var imageId = $(this).attr('id');
+  var idNumber = imageId.substring(17);
+
+  if (imageArray[idNumber].description == 0) {
+    $('#noDescription').show();
+  }
+  else {
+    $("#description").text(imageArray[idNumber].description);
+  }
+
+
+  /*$.getJSON("images.json", function(data) {
     console.log(data);
     $("#description").html(data.images[0].description);
     // data is a JavaScript object now. Handle it as such
-});
+});*/
 
     /*if (description.length == 0) {
        $(containingProject).append("<div class='project-description'><p></p></div>");
@@ -121,20 +140,32 @@ function showDescription(e) {
 
 //submit edits
 function submit(e) {
-e.preventDefault();
+  e.preventDefault();
+  var imageArray = JSON.parse(localStorage.getItem('images'));
+  var imageId = jssor_1_slider.$CurrentIndex();
+  //var idNumber = imageId.substring(17);
+
   console.log("clicked submit");
 
-  var newTitle = $('#editTitle').val();
-  $('#title').text(newTitle);
+/*  var newTitle = $('#editTitle').val();
+  $('#title').text(newTitle);*/
 
-console.log(newTitle);
   var newDescription = $('#editDescription').val();
-  $('#description').text(newDescription);
-  console.log(newDescription);
+  console.log("before");
+  console.log(imageArray[imageId].description);
+  imageArray[imageId].description = newDescription;
+  $('#description').text(imageArray[imageId].description);
+  console.log(imageArray[imageId].description);
 
-$('#commentSection').hide();
-$('#description').show();
+  $('#commentSection').hide();
+  $('#description').show();
 
+  localStorage.setItem('images', JSON.stringify(imageArray));
+}
+
+function arrows(){
+  $('#description').hide();
+  $('#editButton').hide();
 }
 
 function generateSlides()
@@ -150,12 +181,12 @@ function generateSlides()
         new_div.style='display: none;';
         document.getElementById("slides").appendChild(new_div);
 
-        var image = document.createElement('img'); 
-        image.id = imageArray[i]["id"]; 
+        var image = document.createElement('img');
+        image.id = imageArray[i]["id"];
         image.setAttribute('data-u',"image");
-        image.src = imageArray[i]["image"]; 
-        new_div.appendChild(image); 
-
+        image.setAttribute('class', "imageClass");
+        image.src = imageArray[i]["image"];
+        new_div.appendChild(image);
 
         var thumb = document.createElement('img');
         thumb.id = 'thumb' + i;

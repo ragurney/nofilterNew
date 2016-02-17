@@ -123,7 +123,7 @@
         <div id="slides" data-u="slides" style="cursor: default; position: relative; top: 0px; left: 0px; width: 800px; height: 356px; overflow: hidden;">
 
         <!-- IMAGES GO HERE -->
-       
+
         </div>
         <!-- Thumbnail Navigator -->
         <div data-u="thumbnavigator" class="jssort01" style="position:absolute;left:0px;bottom:0px;width:800px;height:100px;" data-autocenter="1">
@@ -140,8 +140,8 @@
         </div>
 
         <!-- Arrow Navigator -->
-        <span data-u="arrowleft" class="jssora05l" style="top:158px;left:8px;width:40px;height:40px;"></span>
-        <span data-u="arrowright" class="jssora05r" style="top:158px;right:8px;width:40px;height:40px;"></span>
+        <span id ="arrowleft" data-u="arrowleft" class="jssora05l" style="top:158px;left:8px;width:40px;height:40px;" onclick="arrows()"></span>
+        <span id ="arrowright" data-u="arrowright" class="jssora05r" style="top:158px;right:8px;width:40px;height:40px;" onclick="arrows()"></span>
     </div>
 
     <!-- Play / Pause Buttons -->
@@ -152,18 +152,26 @@
 
     <!-- Description Section -->
    <div id="description" align="center">
-    <p>description</p>
-       <!--<button id="edit" class="page-scroll btn btn-xl" onclick="edit()">Edit</button>-->
+    <!--<p>description</p>
+       <button id="edit" class="page-scroll btn btn-xl" onclick="edit()">Edit</button>-->
 
+   </div>
+
+   <div id ="noDescription" align="center">
+    <p> No Description, click edit to add description </p>
+   </div>
+
+   <div id="editDiv" align="center">
+     <button id="editButton" onclick="edit()">Edit</button>
    </div>
 
     <!-- Comment Section -->
     <div id="commentSection" class="commentSection" align="center" display="none">
         <form id="comments">
-            <h3>Title</h3>
+            <!--<h3>Title</h3>
             <input id="editTitle" type="text" name="title">
 
-        <br>
+        <br>-->
         <h3> Description </h3>
         <textarea id="editDescription" rows="4" cols="50" name="description">Enter text here...</textarea>
         <br>
