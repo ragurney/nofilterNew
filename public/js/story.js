@@ -1,7 +1,7 @@
 var jssor_1_slider;
 jQuery(document).ready(function ($) {
-    
-    generateSlides(); 
+
+    generateSlides();
     var jssor_1_SlideshowTransitions = [
       {$Duration:1200,x:0.3,$During:{$Left:[0.3,0.7]},$Easing:{$Left:$Jease$.$InCubic,$Opacity:$Jease$.$Linear},$Opacity:2},
       {$Duration:1200,x:-0.3,$SlideOut:true,$Easing:{$Left:$Jease$.$InCubic,$Opacity:$Jease$.$Linear},$Opacity:2},
@@ -26,7 +26,7 @@ jQuery(document).ready(function ($) {
       {$Duration:1200,$Delay:20,$Clip:12,$Assembly:260,$Easing:{$Clip:$Jease$.$InCubic,$Opacity:$Jease$.$Linear},$Opacity:2},
       {$Duration:1200,$Delay:20,$Clip:12,$SlideOut:true,$Assembly:260,$Easing:{$Clip:$Jease$.$OutCubic,$Opacity:$Jease$.$Linear},$Opacity:2}
     ];
-    
+
     var jssor_1_options = {
       $AutoPlay: false,
       $SlideDuration: 600,
@@ -46,11 +46,11 @@ jQuery(document).ready(function ($) {
         $Align: 360
       }
     };
-    
+
     jssor_1_slider = new $JssorSlider$("jssor_1", jssor_1_options);
 
-    
-    
+
+
     //responsive code begin
     //you can remove responsive code if you don't want the slider scales while window resizing
     function ScaleSlider() {
@@ -69,7 +69,7 @@ jQuery(document).ready(function ($) {
     $(window).bind("orientationchange", ScaleSlider);
     //responsive code end
 });
-function play() { 
+function play() {
     console.log("play clicked");
     jssor_1_slider.$Play();
 }
@@ -98,19 +98,31 @@ $(document).ready(function() {
 function initializePage() {
   $('#commentSection').hide();
   $('#description').hide();
-  $('#one').click(showDescription);
+  $('a.details').click(showDescription);
   $('#commentSubmit').click(submit);
 }
 
 // popup description
-function showDescription() {
+function showDescription(e) {
+  e.preventDefault();
   $('#description').toggle();
+  var containingProject = $(this).closest(".details");
+  var description = $(containingProject).find("#description");
+  $.getJSON("images.json", function(data) {
+    console.log(data);
+    $("#description").html(data.images[0].description);
+    // data is a JavaScript object now. Handle it as such
+});
+
+    /*if (description.length == 0) {
+       $(containingProject).append("<div class='project-description'><p></p></div>");
+    }*/
 }
 
 //submit edits
 function submit(e) {
 e.preventDefault();
-  console.log("clicked submit"); 
+  console.log("clicked submit");
 
   var newTitle = $('#editTitle').val();
   $('#title').text(newTitle);
@@ -127,15 +139,16 @@ $('#description').show();
 
 function generateSlides()
 {
-    var imageArray = JSON.parse(localStorage.getItem('images')); 
-    console.log(imageArray.length); 
+    var imageArray = JSON.parse(localStorage.getItem('images'));
+    console.log(imageArray.length);
     console.log(imageArray[0]);
     for( var i = 0; i < imageArray.length; i++ )
     {
         var new_div = document.createElement('div');
         new_div.setAttribute('data-p',144.50);
+        new_div.setAttribute('class',"imageContainer");
         new_div.style='display: none;';
-        document.getElementById("slides").appendChild(new_div); 
+        document.getElementById("slides").appendChild(new_div);
 
         var image = document.createElement('img'); 
         image.id = imageArray[i]["id"]; 
@@ -143,17 +156,18 @@ function generateSlides()
         image.src = imageArray[i]["image"]; 
         new_div.appendChild(image); 
 
-        var thumb = document.createElement('img'); 
-        thumb.id = 'thumb' + i; 
+
+        var thumb = document.createElement('img');
+        thumb.id = 'thumb' + i;
         thumb.setAttribute('data-u',"thumb");
-        thumb.src = 'img/slideshow_img/thumb-01.jpg'; 
-        new_div.appendChild(thumb); 
+        thumb.src = 'img/slideshow_img/thumb-01.jpg';
+        new_div.appendChild(thumb);
+
+        var details = document.createElement('a');
+        details.setAttribute('class', "details");
+        details.id = 'detailsImage' + image.id;
+        $('#detailsImage' + image.id).text("View Details");
+        new_div.appendChild(details);
     }
+
 }
-
-
-
-
-
-
-
