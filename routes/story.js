@@ -1,4 +1,4 @@
-var data = require('../images.json');
+var data = require('../public/images.json');
 //var LocalStorage = require('node-localstorage').LocalStorage,
 //localStorage = new LocalStorage('./scratch');
 exports.renderSlideshow = function(req, res) {
@@ -28,7 +28,7 @@ exports.renderSlideshow = function(req, res) {
 		"thumb": "thumb-01.jpg"
 		}
 		data["images"].push(newPhoto);
-	}*/
+	}*/ 
 	res.render('story', data); 
 
 	/*{

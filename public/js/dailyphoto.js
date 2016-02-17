@@ -47,38 +47,55 @@ function capture(video, canvas, image, captureButton, stopButton, snapshotButton
 					if( localStorage.getItem('images')===null)
 					{
 						var images = [];
+						var newPhoto = new Object(); 
+						newPhoto["id"] = "image"+0;
+						newPhoto["image"] = dataURL;
+						newPhoto["thumb"] = "thumb-01.jpg";
+						newPhoto["date"] = Date();
+						newPhoto["description"] = ""; 
 						//var newImage = new Image(); 
 						//newImage.src = dataURL;
-						images.push(dataURL); 
+						images.push(newPhoto); 
 						console.log(JSON.stringify(images));
 						localStorage.setItem('images', JSON.stringify(images)); 
 					}
 					else
 					{
 						var images = JSON.parse(localStorage.getItem('images')); 
+						var newPhoto = new Object(); 
+						newPhoto["id"] = "image"+(images.length);
+						newPhoto["image"] = dataURL;
+						newPhoto["thumb"] = "thumb-01.jpg";
+						newPhoto["date"] = Date();
+						newPhoto["description"] = ""; 
 						//console.log(images.src); 
 						//var newImage = new Image(); 
 						//newImage.src = dataURL; 
-						images.push(dataURL); 
+						images.push(newPhoto);
+						console.log(images); 
+						//console.log(JSON.stringify(images)); 
 						localStorage.setItem('images', JSON.stringify(images));
 					}
-					/*var data1; 
-			      	$.getJSON("images.json", function(data) 
+					var data1; 
+			      	/*$.getJSON("images.json", function(data) 
 			      	{
 			       	 	//console.log('My JSON data: ', data);
 			        	//$('#myData').text(JSON.stringify(data))
 
-			        	data1 = data;
+			        	
 
-			        	console.log(data1);
-						var idN = "image"+data1.images.length++;  
-						var newPhoto = {
-						"id": idN,
-						"image": "data:image/png;base64," + dataURL, 
-						"thumb": "thumb-01.jpg"
-						}
-						data1["images"].push(newPhoto); 
-						console.log(data1); 
+			        	console.log(data);
+						var idN = "image"+data.images.length++;  
+
+						var newPhoto = new Object(); 
+						newPhoto["id"] = idN;
+						newPhoto["image"] = "data:image/png;base64," + dataURL;
+						newPhoto["thumb"] = "thumb-01.jpg";
+						newPhoto["date"] = Date();
+						newPhoto["description"] = ""; 
+						
+						data["images"].push(newPhoto); 
+						console.log(data); 
 			      	});*/
 					
 					//COOKIE ATTEMPT

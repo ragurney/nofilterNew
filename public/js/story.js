@@ -29,7 +29,7 @@ jQuery(document).ready(function ($) {
     
     var jssor_1_options = {
       $AutoPlay: false,
-      $SlideDuration: 600, 
+      $SlideDuration: 600,
       $SlideshowOptions: {
         $Class: $JssorSlideshowRunner$,
         $Transitions: jssor_1_SlideshowTransitions,
@@ -138,9 +138,9 @@ function generateSlides()
         document.getElementById("slides").appendChild(new_div); 
 
         var image = document.createElement('img'); 
-        image.id = 'image' + i+1; 
+        image.id = imageArray[i]["id"]; 
         image.setAttribute('data-u',"image");
-        image.src = imageArray[i]; 
+        image.src = imageArray[i]["image"]; 
         new_div.appendChild(image); 
 
         var thumb = document.createElement('img'); 
