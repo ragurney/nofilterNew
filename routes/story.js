@@ -29,9 +29,9 @@ exports.renderSlideshow = function(req, res) {
 		}
 		data["images"].push(newPhoto);
 	}*/
-	res.render('story',
+	res.render('story', data);
 
-	{
+	/*{
 		images: [
 		{
 			"id": "one",
@@ -106,5 +106,5 @@ exports.renderSlideshow = function(req, res) {
 			"description":"description of image 12"
 		},
 		]
-	});
+	});*/
 }
