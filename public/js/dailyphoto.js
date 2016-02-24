@@ -1,4 +1,6 @@
-
+jQuery(document).ready(function ($) {
+	$(stopButton).hide();
+});
 
 function capture(video, canvas, image, captureButton, stopButton, snapshotButton) {
 	var ctx = canvas.getContext('2d');
@@ -37,10 +39,10 @@ function capture(video, canvas, image, captureButton, stopButton, snapshotButton
 				//ajax.open("POST",'index.php',false);
 				//ajax.setRequestHeader('Content-Type', 'application/upload');
 				//ajax.send(dataURL);
-				
 
-				//Confirmation for photo 
-				notie.confirm('Do you want to use this as your Photo of the Day?', 'Yes', 'Cancel', function() 
+
+				//Confirmation for photo
+				notie.confirm('Do you want to use this as your Photo of the Day?', 'Yes', 'Cancel', function()
                 {
                 	var currentDate = new Date();
 					var dd = currentDate.getDate();
@@ -62,36 +64,36 @@ function capture(video, canvas, image, captureButton, stopButton, snapshotButton
 					//localStorage.setItem('image2', dataURL);
 					if(localStorage.getItem('images')===null)
 					{
-						var newPhoto = new Object(); 
+						var newPhoto = new Object();
 						newPhoto["id"] = "image"+0;
 						newPhoto["image"] = dataURL;
 						newPhoto["thumb"] = "thumb-01.jpg";
 						newPhoto["day"] = dd;
 						newPhoto["month"] = mm;
 						newPhoto["year"] = yyyy;
-						newPhoto["description"] = ""; 
-						//var newImage = new Image(); 
+						newPhoto["description"] = "";
+						//var newImage = new Image();
 						//newImage.src = dataURL;
-						images.push(newPhoto); 
+						images.push(newPhoto);
 						//console.log(JSON.stringify(images));
-						localStorage.setItem('images', JSON.stringify(images)); 
+						localStorage.setItem('images', JSON.stringify(images));
 					}
 					else if((dd !== images[images.length-1]["day"]) && (mm !== images[images.length-1]["month"]) && (yyyy !== images[images.length-1]["year"]))
 					{
-						var newPhoto = new Object(); 
+						var newPhoto = new Object();
 						newPhoto["id"] = "image"+(images.length);
 						newPhoto["image"] = dataURL;
 						newPhoto["thumb"] = "thumb-01.jpg";
 						newPhoto["day"] = dd;
 						newPhoto["month"] = mm;
 						newPhoto["year"] = yyyy;
-						newPhoto["description"] = ""; 
-						//console.log(images.src); 
-						//var newImage = new Image(); 
-						//newImage.src = dataURL; 
+						newPhoto["description"] = "";
+						//console.log(images.src);
+						//var newImage = new Image();
+						//newImage.src = dataURL;
 						images.push(newPhoto);
-						//console.log(images); 
-						//console.log(JSON.stringify(images)); 
+						//console.log(images);
+						//console.log(JSON.stringify(images));
 						localStorage.setItem('images', JSON.stringify(images));
 					}
 					else
@@ -99,52 +101,52 @@ function capture(video, canvas, image, captureButton, stopButton, snapshotButton
 						notie.alert(3, "<b>Error!</b><br> You've already taken your daily photo for today!<br>Come back tomorrow!" , 3);
 						console.log("DENIED");
 					}
-					var data1; 
-			      	/*$.getJSON("images.json", function(data) 
+					var data1;
+			      	/*$.getJSON("images.json", function(data)
 			      	{
 			       	 	//console.log('My JSON data: ', data);
 			        	//$('#myData').text(JSON.stringify(data))
 
-			        	
+
 
 			        	console.log(data);
-						var idN = "image"+data.images.length++;  
+						var idN = "image"+data.images.length++;
 
-						var newPhoto = new Object(); 
+						var newPhoto = new Object();
 						newPhoto["id"] = idN;
 						newPhoto["image"] = "data:image/png;base64," + dataURL;
 						newPhoto["thumb"] = "thumb-01.jpg";
 						newPhoto["date"] = Date();
-						newPhoto["description"] = ""; 
-						
-						data["images"].push(newPhoto); 
-						console.log(data); 
+						newPhoto["description"] = "";
+
+						data["images"].push(newPhoto);
+						console.log(data);
 			      	});*/
-					
+
 					//COOKIE ATTEMPT
 					/*if( typeof Cookies.getJSON('images') === 'undefined')
 					{
 						var imagesJSON = {
 								"id": "image" + 0,
-								"image": dataURL, //PROBLEM: dataURL too big? 
+								"image": dataURL, //PROBLEM: dataURL too big?
 								"thumb": "thumb-01.jpg"
-						} 
-						Cookies.set('images', imagesJSON); 
-						console.log(Cookies.getJSON()); 
+						}
+						Cookies.set('images', imagesJSON);
+						console.log(Cookies.getJSON());
 					}
 					else
 					{
-						var imagesJSON = Cookies.getJSON('images'); 
+						var imagesJSON = Cookies.getJSON('images');
 						var newImage = {
 							"id": "image"+(++imagesJSON.images.length),
-							"image": dataURL, 
+							"image": dataURL,
 							"thumb": "thumb-01.jpg"
-						} 
-						imagesJSON.push(newImage); 
-						console.log("UPDATED NE: " + imagesJSON); 
+						}
+						imagesJSON.push(newImage);
+						console.log("UPDATED NE: " + imagesJSON);
 						Cookies.set('images', imagesJSON);
 					}*/
-					
+
                 	notie.alert(1, 'Good choice!', 2);
                 });
 			}
@@ -174,8 +176,8 @@ function capture(video, canvas, image, captureButton, stopButton, snapshotButton
 		captureButton.disabled = false;
 		stopButton.disabled = true;
 		snapshotButton.disabled = true;
-		$(captureButton).fadeIn(); 
-		$(stopButton).fadeOut(); 
+		$(captureButton).show();
+		$(stopButton).hide();
 	};
 
 	if (navigator.getUserMedia) {
@@ -215,8 +217,8 @@ function init() {
 	var snapshotButton = document.querySelector('#snapshotButton');
 
 	captureButton.onclick = function () {
-		$(captureButton).fadeOut(); 
-		$(stopButton).fadeIn();
+		$(captureButton).hide();
+		$(stopButton).show();
 		capture(video, canvas, snapshot, captureButton, stopButton, snapshotButton);
 	};
 }
