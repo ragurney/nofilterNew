@@ -174,6 +174,8 @@ function capture(video, canvas, image, captureButton, stopButton, snapshotButton
 		captureButton.disabled = false;
 		stopButton.disabled = true;
 		snapshotButton.disabled = true;
+		$(captureButton).fadeIn(); 
+		$(stopButton).fadeOut(); 
 	};
 
 	if (navigator.getUserMedia) {
@@ -213,6 +215,8 @@ function init() {
 	var snapshotButton = document.querySelector('#snapshotButton');
 
 	captureButton.onclick = function () {
+		$(captureButton).fadeOut(); 
+		$(stopButton).fadeIn();
 		capture(video, canvas, snapshot, captureButton, stopButton, snapshotButton);
 	};
 }
