@@ -47,6 +47,7 @@ app.get('/dailyphoto', dailyphoto.renderCamera);
 app.get('/statistics', statistics.renderStatistics);
 app.get('/landing', landing.renderHomepage);
 app.get('/settings', settings.renderSettings);
+app.get('/test', story.viewTest);
 
 // Example route
 // app.get('/users', user.list);

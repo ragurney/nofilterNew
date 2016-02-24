@@ -202,7 +202,15 @@ function generateSlides()
         details.setAttribute('class', "details");
         details.id = 'detailsImage' + image.id;
         $('#detailsImage' + image.id).text("View Details");
+
+        var currentURL = window.location.href;
+        console.log("HI" + window.location.href);
+        if(currentURL.endsWith("test"))
+        {
+          $('#detailsImage' + image.id).text("View/Edit Description");
+        }
         new_div.appendChild(details);
+        document.getElementById("detailsImage" + image.id).style.fontSize = "xx-large";
     }
 
 }

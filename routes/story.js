@@ -29,6 +29,8 @@ exports.renderSlideshow = function(req, res) {
 		}
 		data["images"].push(newPhoto);
 	}*/ 
+
+	data["test"] = false;
 	res.render('story', data); 
 
 	/*{
@@ -107,4 +109,10 @@ exports.renderSlideshow = function(req, res) {
 		},
 		]
 	});*/
+}
+
+exports.viewTest = function(req, res) {
+	console.log(data);
+	data["test"] = true;
+	res.render('story', data);
 }
