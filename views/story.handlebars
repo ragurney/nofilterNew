@@ -123,6 +123,14 @@
         <div id="slides" data-u="slides" style="cursor: default; position: relative; top: 0px; left: 0px; width: 800px; height: 356px; overflow: hidden;">
 
         <!-- IMAGES GO HERE -->
+        {{#each images}}
+             <div data-p="144.50" style="display: none;">
+
+                <!--id needs to be fixed -->
+                <img id="p{{id}}" data-u="image" src="img/slideshow_img/{{image}}" />
+                <img data-u="thumb" src="img/slideshow_img/{{thumb}}" />
+            </div>
+        {{/each}}
 
         </div>
         <!-- Thumbnail Navigator -->

@@ -31,7 +31,17 @@ exports.renderSlideshow = function(req, res) {
 	}*/ 
 
 	data["test"] = false;
-	res.render('story', data); 
+	res.render('story', 
+		{
+			images: [
+			{
+				"id": "one",
+				"image": "01.jpg",
+				"thumb": "thumb-01.jpg",
+				"description":"description of image 1"
+			}
+			]
+		}); 
 
 	/*{
 		images: [

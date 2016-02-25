@@ -183,7 +183,8 @@ function generateSlides()
         new_div.setAttribute('data-p',144.50);
         new_div.setAttribute('class',"imageContainer");
         new_div.style='display: none;';
-        document.getElementById("slides").appendChild(new_div);
+        //document.getElementById("slides").appendChild(new_div);
+        document.getElementById("slides").insertBefore(new_div, document.getElementById("slides").firstChild);
 
         var image = document.createElement('img');
         image.id = imageArray[i]["id"];
