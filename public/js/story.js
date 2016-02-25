@@ -108,6 +108,11 @@ function initializePage() {
   $('#editButton').hide();
   $('a.details').click(showDescription);
   $('#commentSubmit').click(submit);
+  $('.details').click(clickedDescription)
+}
+
+function clickedDescription() {
+  ga('send', 'event', 'description', 'click');
 }
 
 // popup description
