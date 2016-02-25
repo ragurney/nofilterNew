@@ -108,6 +108,11 @@ function initializePage() {
   $('#editButton').hide();
   $('a.details').click(showDescription);
   $('#commentSubmit').click(submit);
+  $('.details').click(clickedDescription)
+}
+
+function clickedDescription() {
+  ga('send', 'event', 'description', 'click');
 }
 
 // popup description
@@ -206,7 +211,7 @@ function generateSlides()
 
         var currentURL = window.location.href;
         console.log("HI" + window.location.href);
-        if(currentURL.endsWith("test"))
+        if(currentURL.includes("test"))
         {
           $('#detailsImage' + image.id).text("View/Edit Description");
         }

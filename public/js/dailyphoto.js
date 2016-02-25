@@ -78,7 +78,7 @@ function capture(video, canvas, image, captureButton, stopButton, snapshotButton
 						//console.log(JSON.stringify(images));
 						localStorage.setItem('images', JSON.stringify(images));
 					}
-					else if((dd !== images[images.length-1]["day"]) && (mm !== images[images.length-1]["month"]) && (yyyy !== images[images.length-1]["year"]))
+					else if(!(dd === images[images.length-1]["day"]) && (mm === images[images.length-1]["month"]) && (yyyy === images[images.length-1]["year"]))
 					{
 						var newPhoto = new Object();
 						newPhoto["id"] = "image"+(images.length);
