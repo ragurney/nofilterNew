@@ -210,7 +210,7 @@ function generateSlides()
 
         var currentURL = window.location.href;
         console.log("HI" + window.location.href);
-        if(currentURL.endsWith("test"))
+        if(currentURL.includes("test"))
         {
           $('#detailsImage' + image.id).text("View/Edit Description");
         }
