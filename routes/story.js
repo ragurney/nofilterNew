@@ -124,5 +124,15 @@ exports.renderSlideshow = function(req, res) {
 exports.viewTest = function(req, res) {
 	console.log(data);
 	data["test"] = true;
-	res.render('story', data);
+	res.render('story', 
+		{
+			images: [
+			{
+				"id": "one",
+				"image": "01.jpg",
+				"thumb": "thumb-01.jpg",
+				"description":"description of image 1"
+			}
+			]
+		}); 
 }
