@@ -402,6 +402,28 @@ var notie = function(){
     window.addEventListener('resize', debounce(resizeListener.bind(null, confirm_text), debounce_time), true);
     confirm_inner.appendChild(confirm_text);
 
+    // Initialize confirm pic
+    var confirm_pic_div= document.createElement('div'); 
+    confirm_pic_div.id = 2;
+    confirm_pic_div.style.boxSizing = 'border-box';
+    confirm_pic_div.style.display = 'block'; 
+    confirm_pic_div.style.height = '200px';
+    confirm_pic_div.style.lineHeight = '200px';
+    confirm_pic_div.style.width = '100%';
+    confirm_pic_div.style.textAlign = 'center';
+    confirm_pic_div.style.cursor = 'pointer';
+    confirm_inner.appendChild(confirm_pic_div);
+
+    var confirm_pic = document.createElement('img');
+    confirm_pic.style.display = 'block'; 
+    confirm_pic.style.height = '200px';
+    confirm_pic.style.textAlign = 'center';
+   // confirm_pic.style.lineHeight = '200px'
+    confirm_pic.id = 1;
+    window.addEventListener('resize', debounce(resizeListener.bind(null, confirm_pic), debounce_time), true);
+    confirm_pic_div.appendChild(confirm_pic);
+
+
     var confirm_yes_text = document.createElement('span');
     confirm_yes_text.id = confirm_yes_text_id;
     confirm_yes_text.style.color = confirm_and_input_color_yes_text;
@@ -426,11 +448,11 @@ var notie = function(){
     var confirm_height = 0;
     var confirm_is_showing = false;
 
-    function confirm(title, yes_text, no_text, yes_callback) {
+    function confirm(title, yes_text, no_text, pic, yes_callback) {
         
         // Blur active element for use of enter key
         document.activeElement.blur();
-        
+        confirm_pic.src = pic; 
         if (alert_is_showing) {
             // Hide notie.alert
             clearTimeout(alert_timeout_1);

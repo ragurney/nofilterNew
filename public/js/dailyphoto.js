@@ -42,7 +42,7 @@ function capture(video, canvas, image, captureButton, stopButton, snapshotButton
 
 
 				//Confirmation for photo
-				notie.confirm('Do you want to use this as your Photo of the Day?', 'Yes', 'Cancel', function()
+				notie.confirm('Do you want to use this as your Photo of the Day?', 'Yes', 'Cancel', dataURL, function()
                 {
                 	var currentDate = new Date();
 					var dd = currentDate.getDate();
