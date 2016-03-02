@@ -76,11 +76,13 @@ function play() {
     jssor_1_slider.$Play();
     $('#description').hide();
     $('#editButton').hide();
+    $('.details').hide();
 }
 
 function pause() {
     console.log("pause clicked");
     jssor_1_slider.$Pause();
+    $('.details').show();
 }
 
 function edit() {
