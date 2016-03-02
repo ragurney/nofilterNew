@@ -53,8 +53,6 @@ jQuery(document).ready(function ($) {
 
     jssor_1_slider = new $JssorSlider$("jssor_1", jssor_1_options);
 
-
-
     //responsive code begin
     //you can remove responsive code if you don't want the slider scales while window resizing
     function ScaleSlider() {
@@ -76,6 +74,8 @@ jQuery(document).ready(function ($) {
 function play() {
     console.log("play clicked");
     jssor_1_slider.$Play();
+    $('#description').hide();
+    $('#editButton').hide();
 }
 
 function pause() {
@@ -109,10 +109,18 @@ function initializePage() {
   $('a.details').click(showDescription);
   $('#commentSubmit').click(submit);
   $('.details').click(clickedDescription)
+  $('.jssort01').click(hideDescription);
+  $('.imageClass').click(hideDescription);
 }
 
 function clickedDescription() {
   ga('send', 'event', 'description', 'click');
+}
+
+function hideDescription() {
+  console.log("clicked");
+  $('#description').hide();
+  $('#editButton').hide();
 }
 
 // popup description
@@ -127,7 +135,7 @@ function showDescription(e) {
   var description = $(containingProject).find("#description");
   var imageId = $(this).attr('id');
   var idNumber = imageId.substring(17);
-
+console.log("details button: " + idNumber);
   if (imageArray[idNumber].description == 0) {
     $('#noDescription').show();
   }
@@ -151,10 +159,12 @@ function showDescription(e) {
 function submit(e) {
   e.preventDefault();
   var imageArray = JSON.parse(localStorage.getItem('images'));
-  var imageId = jssor_1_slider.$CurrentIndex();
+  var imageId = imageArray.length - jssor_1_slider.$CurrentIndex() - 1;
   //var idNumber = imageId.substring(17);
 
   console.log("clicked submit");
+  console.log("image id:" + imageId);
+
 
 /*  var newTitle = $('#editTitle').val();
   $('#title').text(newTitle);*/
@@ -217,6 +227,14 @@ function generateSlides()
         }
         new_div.appendChild(details);
         document.getElementById("detailsImage" + image.id).style.fontSize = "xx-large";
+
+        /*var description = document.createElement('div');
+        description.setAttribute('class', "description" + image.id);
+        description.id = 'description' + image.id;
+        $('#description' + image.id).addClass("descriptions");
+        $('.description' + image.id).insertAfter('#jssor_1');
+        //$('#description' + image.id).text("here" + image.id);
+        new_div.appendChild(description);*/
     }
 
 }

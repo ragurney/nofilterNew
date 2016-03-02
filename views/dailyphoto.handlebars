@@ -96,12 +96,11 @@
 
                     <!-- Capture button -->
                     <p>Click the "Turn Camera On" button to enable access to your webcam, then tap the " Take Snapshot!" button to take a photo</p>
-                    <div>
-                        <div>
+                        <center>
                             <video id="getUserMedia" width="320" height="240" autoplay></video>
                             <canvas id="canvas" width="320" height="240"></canvas>
-                            <img id="snapshot" width="320" height="240" src="" alt="snapshot">
-                        </div>
+                        </center>
+                        <img id="snapshot" width="320" height="240" src="" alt="snapshot">
                         <div style="clear:both"></div>
                         <form action="javascript:;" method="post">
                             <button id="captureButton" class="page-scroll btn btn-xl">Turn Camera On</button>
