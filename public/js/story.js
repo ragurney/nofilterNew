@@ -123,6 +123,7 @@ function hideDescription() {
   console.log("clicked");
   $('#description').hide();
   $('#editButton').hide();
+  $('#noDescription').hide();
 }
 
 // popup description
@@ -213,7 +214,8 @@ function generateSlides()
         var thumb = document.createElement('img');
         thumb.id = 'thumb' + i;
         thumb.setAttribute('data-u',"thumb");
-        thumb.src = 'img/slideshow_img/thumb-01.jpg';
+        //thumb.src = 'img/slideshow_img/thumb-01.jpg';
+        thumb.src = image.src;
         new_div.appendChild(thumb);
 
         var details = document.createElement('a');
