@@ -124,6 +124,7 @@ function hideDescription() {
   $('#description').hide();
   $('#editButton').hide();
   $('#noDescription').hide();
+  $('#commentSection').hide();
 }
 
 // popup description
@@ -188,6 +189,8 @@ function submit(e) {
 function arrows(){
   $('#description').hide();
   $('#editButton').hide();
+  $('#noDescription').hide();
+  $('#commentSection').hide();
 }
 
 function generateSlides()
